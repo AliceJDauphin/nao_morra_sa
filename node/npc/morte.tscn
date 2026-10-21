@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cequqignsefei"]
+
+[ext_resource type="Texture2D" uid="uid://b3uvv3n7tvn3a" path="res://assets/death.png" id="1_8jtdl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fy6sf"]
+size = Vector2(20, 27.5)
+
+[node name="Morte" type="CharacterBody2D" unique_id=367182896]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2077335160]
+scale = Vector2(0.79999924, 0.84000045)
+shape = SubResource("RectangleShape2D_fy6sf")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=121293658]
+texture = ExtResource("1_8jtdl")

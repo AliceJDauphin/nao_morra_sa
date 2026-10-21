@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://28x320tv63h5"]
+
+[ext_resource type="Script" uid="uid://i30n0raylqd" path="res://scripts/controller/State/idle.gd" id="1_sjwyc"]
+
+[node name="Idle" type="Node" unique_id=1830976867 node_paths=PackedStringArray("timer")]
+script = ExtResource("1_sjwyc")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="." unique_id=645676204]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
