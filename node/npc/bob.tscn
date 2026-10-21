@@ -94,7 +94,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4g61n")
 }],
-"loop": true,
+"loop": 1,
 "name": &"chatting",
 "speed": 7.0
 }, {
@@ -102,7 +102,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_50e7e")
 }],
-"loop": true,
+"loop": 1,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -110,7 +110,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bgibx")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -124,7 +124,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_276ds")
 }],
-"loop": false,
+"loop": 0,
 "name": &"resting",
 "speed": 5.0
 }, {
@@ -135,13 +135,57 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d8phw")
 }],
-"loop": false,
+"loop": 0,
 "name": &"start_chatting",
 "speed": 5.0
 }]
 
 [sub_resource type="Animation" id="Animation_oxjek"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_ix1b8"]
+resource_name = "chatting"
+length = 2.1666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"chatting"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 0.20059223, 0.36666667, 0.5558264, 0.7558265, 0.9558265, 1.1558266, 1.3558265, 1.5558264, 1.7558265, 1.9558264),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 4, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_2uqb0"]
+resource_name = "start_chatting"
+length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -152,43 +196,55 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"idle"]
+"values": [&"start_chatting"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_2uqb0"]
-resource_name = "start_chatting"
-length = 0.8
+[sub_resource type="Animation" id="Animation_0pa8i"]
+resource_name = "stop_chatting"
+length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.36666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"start_chatting", &"chatting"]
+"values": [&"start_chatting"]
 }
-tracks/1/type = "method"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprite")
+tracks/1/path = NodePath("sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"chatting"],
-"method": &"play"
-}]
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oxjek"]
 _data = {
 &"RESET": SubResource("Animation_oxjek"),
-&"start_chatting": SubResource("Animation_2uqb0")
+&"chatting": SubResource("Animation_ix1b8"),
+&"start_chatting": SubResource("Animation_2uqb0"),
+&"stop_chatting": SubResource("Animation_0pa8i")
 }
 
 [node name="bob" type="CharacterBody2D" unique_id=308532082 node_paths=PackedStringArray("State_machine", "npc_detector", "sprite")]
@@ -228,8 +284,9 @@ collision_mask = 4
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=552215677]
 sprite_frames = SubResource("SpriteFrames_fy6sf")
-animation = &"idle"
+animation = &""
 autoplay = "idle"
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=460167476]
 libraries/ = SubResource("AnimationLibrary_oxjek")
