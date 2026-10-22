@@ -7,6 +7,7 @@ signal start_chatting(npc)
 @export var State_machine : State_machine
 @export var npc_detector : Area2D
 @export var sprite : AnimatedSprite2D
+@export var animation : AnimationTree
 
 var friend : CharacterBody2D = null
 var talking_time : int = 0
@@ -29,7 +30,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	sprite.scale.x = direction
 	$Label.text = str(name)
-	$Label2.text = str(State_machine.current_state.timer.get_wait_time())
+	$Label2.text = animation.get('parameters/playback').get_current_node()
+	$Label3.text = State_machine.current_state.name
+	##print(animation['parameters/conditions/chatting'])
 	State_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
@@ -40,7 +43,6 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta 		
 	move_and_slide()
 	if is_on_floor_only() and fall_speed > MIN_FALL_DAMAGE:
-		$sprite.play("death")
 		print("ouch")
 
 func wall_check():
@@ -62,7 +64,3 @@ func _on_start_chatting(npc : CharacterBody2D, time : int) -> void:
 	friend = npc
 	talking_time = time
 	State_machine.change_state($State_machine/Resting)
-
-func _on_sprite_animation_finished() -> void:
-	if sprite.animation == "start_chatting":
-		sprite.play("chatting")

@@ -70,6 +70,10 @@ region = Rect2(0, 0, 18, 25)
 atlas = ExtResource("2_2uqb0")
 region = Rect2(18, 0, 18, 25)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uqb0"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(144, 0, 18, 25)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_fy6sf"]
 animations = [{
 "frames": [{
@@ -134,6 +138,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d8phw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uqb0")
 }],
 "loop": 0,
 "name": &"start_chatting",
@@ -152,12 +159,25 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
 }
 
 [sub_resource type="Animation" id="Animation_ix1b8"]
 resource_name = "chatting"
-length = 2.1666667
+length = 2.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -165,7 +185,7 @@ tracks/0/path = NodePath("sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"chatting"]
@@ -177,10 +197,94 @@ tracks/1/path = NodePath("sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.033333335, 0.20059223, 0.36666667, 0.5558264, 0.7558265, 0.9558265, 1.1558266, 1.3558265, 1.5558264, 1.7558265, 1.9558264),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8000001, 1.0000001, 1.2000002, 1.4000001, 1.6, 1.8000001, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 4, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_j6nft"]
+resource_name = "dead"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_u2qmb"]
+resource_name = "idle"
+length = 0.06666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uasmd"]
+resource_name = "resting"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"resting"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
 }
 
 [sub_resource type="Animation" id="Animation_2uqb0"]
@@ -243,17 +347,107 @@ tracks/1/keys = {
 _data = {
 &"RESET": SubResource("Animation_oxjek"),
 &"chatting": SubResource("Animation_ix1b8"),
+&"dead": SubResource("Animation_j6nft"),
+&"idle": SubResource("Animation_u2qmb"),
+&"resting": SubResource("Animation_uasmd"),
 &"start_chatting": SubResource("Animation_2uqb0"),
 &"stop_chatting": SubResource("Animation_0pa8i")
 }
 
-[node name="bob" type="CharacterBody2D" unique_id=308532082 node_paths=PackedStringArray("State_machine", "npc_detector", "sprite")]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uasmd"]
+animation = &"chatting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oat3h"]
+animation = &"dead"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j6nft"]
+animation = &"idle"
+advance_on_start = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6hby"]
+animation = &"resting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4g61n"]
+animation = &"start_chatting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o4y44"]
+animation = &"stop_chatting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_276ds"]
+animation = &"resting"
+play_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s6hby"]
+advance_mode = 2
+advance_condition = &"chatting"
+advance_expression = "chatting == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_276ds"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oat3h"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d8phw"]
+break_loop_at_end = true
+advance_mode = 2
+advance_condition = &"idle"
+advance_expression = "idle == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_31wec"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_doxrd"]
+advance_mode = 2
+advance_condition = &"resting"
+advance_expression = "resting == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m2s4m"]
+advance_mode = 2
+advance_condition = &"idle"
+advance_expression = "idle == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_buaie"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0323m"]
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0cobj"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_f48jo"]
+states/Start/position = Vector2(202, 100)
+states/chatting/node = SubResource("AnimationNodeAnimation_uasmd")
+states/chatting/position = Vector2(446, -106)
+states/dead/node = SubResource("AnimationNodeAnimation_oat3h")
+states/dead/position = Vector2(629, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_j6nft")
+states/idle/position = Vector2(332, 100)
+states/resting/node = SubResource("AnimationNodeAnimation_s6hby")
+states/resting/position = Vector2(506, 223)
+states/start_chatting/node = SubResource("AnimationNodeAnimation_4g61n")
+states/start_chatting/position = Vector2(446, -196)
+states/stop_chatting/node = SubResource("AnimationNodeAnimation_o4y44")
+states/stop_chatting/position = Vector2(446, 0)
+states/stop_resting/node = SubResource("AnimationNodeAnimation_276ds")
+states/stop_resting/position = Vector2(332, 223)
+transitions = ["idle", "start_chatting", SubResource("AnimationNodeStateMachineTransition_s6hby"), "start_chatting", "chatting", SubResource("AnimationNodeStateMachineTransition_276ds"), "stop_chatting", "idle", SubResource("AnimationNodeStateMachineTransition_oat3h"), "chatting", "stop_chatting", SubResource("AnimationNodeStateMachineTransition_d8phw"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_31wec"), "idle", "resting", SubResource("AnimationNodeStateMachineTransition_doxrd"), "resting", "stop_resting", SubResource("AnimationNodeStateMachineTransition_m2s4m"), "stop_resting", "idle", SubResource("AnimationNodeStateMachineTransition_buaie"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_0323m"), "dead", "End", SubResource("AnimationNodeStateMachineTransition_0cobj")]
+graph_offset = Vector2(-82, -39)
+
+[node name="bob" type="CharacterBody2D" unique_id=308532082 node_paths=PackedStringArray("State_machine", "npc_detector", "sprite", "animation")]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_4qq8w")
 State_machine = NodePath("State_machine")
 npc_detector = NodePath("npc_detector")
 sprite = NodePath("sprite")
+animation = NodePath("AnimationTree")
 SPEED = 50.0
 SPEED_MOD = Array[float]([0.5, 0.7, 1.0, 1.5, 2.0])
 MIN_FALL_DAMAGE = 300.0
@@ -284,12 +478,19 @@ collision_mask = 4
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=552215677]
 sprite_frames = SubResource("SpriteFrames_fy6sf")
-animation = &""
+animation = &"idle"
 autoplay = "idle"
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=460167476]
 libraries/ = SubResource("AnimationLibrary_oxjek")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=391778294]
+tree_root = SubResource("AnimationNodeStateMachine_f48jo")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/chatting = false
+parameters/conditions/dead = false
+parameters/conditions/idle = true
+parameters/conditions/resting = false
 
 [node name="State_machine" parent="." unique_id=27953710 node_paths=PackedStringArray("current_state") instance=ExtResource("4_bgibx")]
 current_state = NodePath("Idle")
@@ -314,12 +515,17 @@ offset_bottom = -22.0
 text = "Anus"
 
 [node name="Label2" type="Label" parent="." unique_id=1852862587]
-visible = false
 offset_left = -9.0
 offset_top = -33.0
 offset_right = 10.0
 offset_bottom = -10.0
 text = "cu"
 
+[node name="Label3" type="Label" parent="." unique_id=135884014]
+offset_left = -24.0
+offset_top = -59.0
+offset_right = 27.0
+offset_bottom = -36.0
+text = "merda"
+
 [connection signal="start_chatting" from="." to="." method="_on_start_chatting"]
-[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]

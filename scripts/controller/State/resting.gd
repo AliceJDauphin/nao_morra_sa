@@ -10,18 +10,18 @@ extends State
 func enter():
 	if npc.friend == null:
 		timer.start(npc.rest_time)
-		npc.sprite.play("resting")
 	else:
+		npc.animation['parameters/conditions/chatting'] = true
 		timer.start(npc.talking_time)
-		print(npc.position.direction_to(npc.friend.position).x)
+		#print(npc.position.direction_to(npc.friend.position).x)
 		npc.direction = npc.position.direction_to(npc.friend.position).x / abs(npc.position.direction_to(npc.friend.position).x)
-		npc.sprite.play("start_chatting")
 		 
 	#print(time)
 	
 func exit():
 	npc.friend = null
 	npc.talking_time = 0
+	npc.animation['parameters/conditions/chatting'] = false
 	pass
 
 func update(delta):

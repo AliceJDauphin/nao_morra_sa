@@ -12,11 +12,12 @@ var distance : float
 var speed : int
 
 func enter():
+	npc.animation['parameters/conditions/idle'] = true
 	timer.start(randi_range(3,10))
-	npc.sprite.play("idle")
 	pass
 	
 func exit():
+	npc.animation['parameters/conditions/idle'] = false
 	npc.velocity.x = 0
 	pass
 
