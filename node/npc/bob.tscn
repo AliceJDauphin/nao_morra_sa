@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dtdds3m1175ks" path="res://assets/bob_resting.png" id="2_2uqb0"]
 [ext_resource type="Texture2D" uid="uid://b3uvv3n7tvn3a" path="res://assets/death.png" id="2_rfq0m"]
 [ext_resource type="PackedScene" uid="uid://xiv61qf0y03t" path="res://node/controller/state_machine.tscn" id="4_bgibx"]
-[ext_resource type="PackedScene" uid="uid://28x320tv63h5" path="res://node/controller/States/idle.tscn" id="5_4asbw"]
-[ext_resource type="PackedScene" uid="uid://c63ve0nyq3spr" path="res://node/controller/States/resting.tscn" id="5_qqnsf"]
-[ext_resource type="PackedScene" uid="uid://cxyjngkbgds2e" path="res://node/controller/States/danger.tscn" id="6_4asbw"]
+[ext_resource type="PackedScene" uid="uid://28x320tv63h5" path="res://node/controller/States/npc/idle.tscn" id="5_4asbw"]
+[ext_resource type="PackedScene" uid="uid://c63ve0nyq3spr" path="res://node/controller/States/npc/resting.tscn" id="5_qqnsf"]
+[ext_resource type="PackedScene" uid="uid://cxyjngkbgds2e" path="res://node/controller/States/npc/danger.tscn" id="6_4asbw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fy6sf"]
 radius = 31.0
@@ -380,7 +380,6 @@ play_mode = 1
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s6hby"]
 advance_mode = 2
 advance_condition = &"chatting"
-advance_expression = "chatting == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_276ds"]
 switch_mode = 2
@@ -394,20 +393,18 @@ advance_mode = 2
 break_loop_at_end = true
 advance_mode = 2
 advance_condition = &"idle"
-advance_expression = "idle == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_31wec"]
 advance_mode = 2
+advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_doxrd"]
 advance_mode = 2
 advance_condition = &"resting"
-advance_expression = "resting == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m2s4m"]
 advance_mode = 2
 advance_condition = &"idle"
-advance_expression = "idle == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_buaie"]
 switch_mode = 2
@@ -438,7 +435,7 @@ states/stop_chatting/position = Vector2(446, 0)
 states/stop_resting/node = SubResource("AnimationNodeAnimation_276ds")
 states/stop_resting/position = Vector2(332, 223)
 transitions = ["idle", "start_chatting", SubResource("AnimationNodeStateMachineTransition_s6hby"), "start_chatting", "chatting", SubResource("AnimationNodeStateMachineTransition_276ds"), "stop_chatting", "idle", SubResource("AnimationNodeStateMachineTransition_oat3h"), "chatting", "stop_chatting", SubResource("AnimationNodeStateMachineTransition_d8phw"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_31wec"), "idle", "resting", SubResource("AnimationNodeStateMachineTransition_doxrd"), "resting", "stop_resting", SubResource("AnimationNodeStateMachineTransition_m2s4m"), "stop_resting", "idle", SubResource("AnimationNodeStateMachineTransition_buaie"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_0323m"), "dead", "End", SubResource("AnimationNodeStateMachineTransition_0cobj")]
-graph_offset = Vector2(-82, -39)
+graph_offset = Vector2(-14, -103)
 
 [node name="bob" type="CharacterBody2D" unique_id=308532082 node_paths=PackedStringArray("State_machine", "npc_detector", "sprite", "animation")]
 collision_layer = 2
@@ -489,7 +486,7 @@ tree_root = SubResource("AnimationNodeStateMachine_f48jo")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/chatting = false
 parameters/conditions/dead = false
-parameters/conditions/idle = true
+parameters/conditions/idle = false
 parameters/conditions/resting = false
 
 [node name="State_machine" parent="." unique_id=27953710 node_paths=PackedStringArray("current_state") instance=ExtResource("4_bgibx")]
@@ -515,6 +512,7 @@ offset_bottom = -22.0
 text = "Anus"
 
 [node name="Label2" type="Label" parent="." unique_id=1852862587]
+visible = false
 offset_left = -9.0
 offset_top = -33.0
 offset_right = 10.0
@@ -522,6 +520,7 @@ offset_bottom = -10.0
 text = "cu"
 
 [node name="Label3" type="Label" parent="." unique_id=135884014]
+visible = false
 offset_left = -24.0
 offset_top = -59.0
 offset_right = 27.0

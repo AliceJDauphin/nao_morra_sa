@@ -41,23 +41,22 @@ offset_bottom = 23.0
 script = ExtResource("4_1mqk8")
 metadata/_edit_use_anchors_ = true
 
-[node name="Carlos" parent="." unique_id=1044134369 instance=ExtResource("1_j861m")]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(47, 104)
-
-[node name="Marcelo" parent="." unique_id=1223018744 instance=ExtResource("1_j861m")]
+[node name="Anisia" parent="." unique_id=234619776 instance=ExtResource("1_j861m")]
 modulate = Color(0, 0, 1, 1)
-position = Vector2(-141, 100)
+position = Vector2(-97, 112)
 
-[node name="jonas" parent="." unique_id=1698490861 instance=ExtResource("1_j861m")]
-modulate = Color(0, 1, 1, 1)
-position = Vector2(-87, 91)
+[node name="Ciro" parent="." unique_id=1780127801 instance=ExtResource("1_j861m")]
+modulate = Color(1, 1, 0.14509805, 1)
+position = Vector2(67, 109)
 
-[node name="Lucas" parent="." unique_id=1316162233 instance=ExtResource("1_j861m")]
-position = Vector2(-189, 94)
+[node name="Anderson" parent="." unique_id=1842739890 instance=ExtResource("1_j861m")]
+modulate = Color(0, 0.8666667, 1, 1)
+position = Vector2(146, 106)
 
-[node name="Ana" parent="." unique_id=626534408 instance=ExtResource("1_j861m")]
-position = Vector2(179, 98)
+[node name="Lula" parent="." unique_id=351997388 instance=ExtResource("1_j861m")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-42, 106)
 
-[node name="Mark Zukerberg" parent="." unique_id=2059957473 instance=ExtResource("1_j861m")]
-position = Vector2(118, 101)
+[node name="Eneias" parent="." unique_id=1451393399 instance=ExtResource("1_j861m")]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(198, 108)

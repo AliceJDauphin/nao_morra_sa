@@ -32,7 +32,6 @@ func _process(delta: float) -> void:
 	$Label.text = str(name)
 	$Label2.text = animation.get('parameters/playback').get_current_node()
 	$Label3.text = State_machine.current_state.name
-	##print(animation['parameters/conditions/chatting'])
 	State_machine.process(delta)
 
 func _physics_process(delta: float) -> void:

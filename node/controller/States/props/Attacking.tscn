@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dnd2ycvpn84b1"]
+
+[ext_resource type="Script" uid="uid://cwxai0ad76t5e" path="res://scripts/controller/State/props/attacking.gd" id="1_4n3qp"]
+
+[node name="Attacking" type="Node" unique_id=1073754779]
+script = ExtResource("1_4n3qp")
+metadata/_custom_type_script = "uid://7n6o4atq4egq"
