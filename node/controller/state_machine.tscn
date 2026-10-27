@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://xiv61qf0y03t"]
-
-[ext_resource type="Script" uid="uid://d1y7hgx7hn2qw" path="res://scripts/controller/state_machine.gd" id="1_gp4xi"]
-
-[node name="State_machine" type="Node" unique_id=27953710]
-script = ExtResource("1_gp4xi")

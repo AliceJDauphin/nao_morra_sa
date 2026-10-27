@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://cxyjngkbgds2e"]
-
-[ext_resource type="Script" uid="uid://csnabmcxjuhsb" path="res://scripts/controller/State/danger.gd" id="1_45ej1"]
-
-[node name="Danger" type="Node" unique_id=293294459]
-script = ExtResource("1_45ej1")
