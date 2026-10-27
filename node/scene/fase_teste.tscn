@@ -1,0 +1,62 @@
+[gd_scene format=4 uid="uid://dudjymm4ofmwd"]
+
+[ext_resource type="PackedScene" uid="uid://d268w86ypeps1" path="res://node/npc/bob.tscn" id="1_j861m"]
+[ext_resource type="Texture2D" uid="uid://crlfpketfcti1" path="res://assets/floor-office.png" id="2_amw58"]
+[ext_resource type="PackedScene" uid="uid://lwq23tl65m1t" path="res://node/props/Pc_bomba.tscn" id="3_6x45i"]
+[ext_resource type="Script" uid="uid://b4q6s7pknt4ge" path="res://label.gd" id="4_1mqk8"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6x45i"]
+texture = ExtResource("2_amw58")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -15, 16, -15, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_fy6sf"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_6x45i")
+
+[node name="fase-teste" type="Node2D" unique_id=2046978907]
+
+[node name="bob" parent="." unique_id=308532082 instance=ExtResource("1_j861m")]
+position = Vector2(5, 98)
+min_chat_time = 10
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=581772467]
+scale = Vector2(-18.663523, 2.231784)
+zoom = Vector2(2, 2)
+
+[node name="floor" type="TileMapLayer" parent="." unique_id=1795702536]
+tile_map_data = PackedByteArray("AAD3/wQAAAAAAAAAAAD4/wQAAAAAAAAAAAD5/wQAAAAAAAAAAAD6/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD8/wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAD3/wMAAAAAAAAAAAD3/wIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAIAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_fy6sf")
+
+[node name="Pc-bomba" parent="." unique_id=885221228 instance=ExtResource("3_6x45i")]
+visible = false
+position = Vector2(67, 114)
+
+[node name="Label" type="Label" parent="." unique_id=1026136436]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_1mqk8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Anisia" parent="." unique_id=234619776 instance=ExtResource("1_j861m")]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(-97, 112)
+
+[node name="Ciro" parent="." unique_id=1780127801 instance=ExtResource("1_j861m")]
+modulate = Color(1, 1, 0.14509805, 1)
+position = Vector2(67, 109)
+
+[node name="Anderson" parent="." unique_id=1842739890 instance=ExtResource("1_j861m")]
+modulate = Color(0, 0.8666667, 1, 1)
+position = Vector2(146, 106)
+
+[node name="Lula" parent="." unique_id=351997388 instance=ExtResource("1_j861m")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-42, 106)
+
+[node name="Eneias" parent="." unique_id=1451393399 instance=ExtResource("1_j861m")]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(198, 108)

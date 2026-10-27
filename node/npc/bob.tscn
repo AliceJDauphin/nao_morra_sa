@@ -1,0 +1,530 @@
+[gd_scene format=3 uid="uid://d268w86ypeps1"]
+
+[ext_resource type="Texture2D" uid="uid://bgrggc4qx117j" path="res://assets/NPC #1.png" id="1_0q4fk"]
+[ext_resource type="Script" uid="uid://bii4eoslqlira" path="res://scripts/npc/bob.gd" id="1_4qq8w"]
+[ext_resource type="Texture2D" uid="uid://dtdds3m1175ks" path="res://assets/bob_resting.png" id="2_2uqb0"]
+[ext_resource type="Texture2D" uid="uid://b3uvv3n7tvn3a" path="res://assets/death.png" id="2_rfq0m"]
+[ext_resource type="PackedScene" uid="uid://xiv61qf0y03t" path="res://node/controller/state_machine.tscn" id="4_bgibx"]
+[ext_resource type="PackedScene" uid="uid://28x320tv63h5" path="res://node/controller/States/npc/idle.tscn" id="5_4asbw"]
+[ext_resource type="PackedScene" uid="uid://c63ve0nyq3spr" path="res://node/controller/States/npc/resting.tscn" id="5_qqnsf"]
+[ext_resource type="PackedScene" uid="uid://cxyjngkbgds2e" path="res://node/controller/States/npc/danger.tscn" id="6_4asbw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fy6sf"]
+radius = 31.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fy6sf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxjek"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(36, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix1b8"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(54, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pa8i"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(72, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2qmb"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(90, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uasmd"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(108, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6nft"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(126, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g61n"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(144, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50e7e"]
+atlas = ExtResource("2_rfq0m")
+region = Rect2(0, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgibx"]
+atlas = ExtResource("1_0q4fk")
+region = Rect2(0, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4y44"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(0, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6hby"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(162, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_276ds"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(180, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oat3h"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(0, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8phw"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(18, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uqb0"]
+atlas = ExtResource("2_2uqb0")
+region = Rect2(144, 0, 18, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fy6sf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxjek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix1b8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pa8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2qmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uasmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6nft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g61n")
+}],
+"loop": 1,
+"name": &"chatting",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50e7e")
+}],
+"loop": 1,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgibx")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4y44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6hby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_276ds")
+}],
+"loop": 0,
+"name": &"resting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oat3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8phw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uqb0")
+}],
+"loop": 0,
+"name": &"start_chatting",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_oxjek"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_ix1b8"]
+resource_name = "chatting"
+length = 2.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"chatting"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8000001, 1.0000001, 1.2000002, 1.4000001, 1.6, 1.8000001, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 4, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_j6nft"]
+resource_name = "dead"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_u2qmb"]
+resource_name = "idle"
+length = 0.06666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uasmd"]
+resource_name = "resting"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"resting"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_2uqb0"]
+resource_name = "start_chatting"
+length = 0.23333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"start_chatting"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_0pa8i"]
+resource_name = "stop_chatting"
+length = 0.23333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"start_chatting"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oxjek"]
+_data = {
+&"RESET": SubResource("Animation_oxjek"),
+&"chatting": SubResource("Animation_ix1b8"),
+&"dead": SubResource("Animation_j6nft"),
+&"idle": SubResource("Animation_u2qmb"),
+&"resting": SubResource("Animation_uasmd"),
+&"start_chatting": SubResource("Animation_2uqb0"),
+&"stop_chatting": SubResource("Animation_0pa8i")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uasmd"]
+animation = &"chatting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oat3h"]
+animation = &"dead"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j6nft"]
+animation = &"idle"
+advance_on_start = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6hby"]
+animation = &"resting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4g61n"]
+animation = &"start_chatting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o4y44"]
+animation = &"stop_chatting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_276ds"]
+animation = &"resting"
+play_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s6hby"]
+advance_mode = 2
+advance_condition = &"chatting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_276ds"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oat3h"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d8phw"]
+break_loop_at_end = true
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_31wec"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_doxrd"]
+advance_mode = 2
+advance_condition = &"resting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m2s4m"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_buaie"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0323m"]
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0cobj"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_f48jo"]
+states/Start/position = Vector2(202, 100)
+states/chatting/node = SubResource("AnimationNodeAnimation_uasmd")
+states/chatting/position = Vector2(446, -106)
+states/dead/node = SubResource("AnimationNodeAnimation_oat3h")
+states/dead/position = Vector2(629, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_j6nft")
+states/idle/position = Vector2(332, 100)
+states/resting/node = SubResource("AnimationNodeAnimation_s6hby")
+states/resting/position = Vector2(506, 223)
+states/start_chatting/node = SubResource("AnimationNodeAnimation_4g61n")
+states/start_chatting/position = Vector2(446, -196)
+states/stop_chatting/node = SubResource("AnimationNodeAnimation_o4y44")
+states/stop_chatting/position = Vector2(446, 0)
+states/stop_resting/node = SubResource("AnimationNodeAnimation_276ds")
+states/stop_resting/position = Vector2(332, 223)
+transitions = ["idle", "start_chatting", SubResource("AnimationNodeStateMachineTransition_s6hby"), "start_chatting", "chatting", SubResource("AnimationNodeStateMachineTransition_276ds"), "stop_chatting", "idle", SubResource("AnimationNodeStateMachineTransition_oat3h"), "chatting", "stop_chatting", SubResource("AnimationNodeStateMachineTransition_d8phw"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_31wec"), "idle", "resting", SubResource("AnimationNodeStateMachineTransition_doxrd"), "resting", "stop_resting", SubResource("AnimationNodeStateMachineTransition_m2s4m"), "stop_resting", "idle", SubResource("AnimationNodeStateMachineTransition_buaie"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_0323m"), "dead", "End", SubResource("AnimationNodeStateMachineTransition_0cobj")]
+graph_offset = Vector2(-14, -103)
+
+[node name="bob" type="CharacterBody2D" unique_id=308532082 node_paths=PackedStringArray("State_machine", "npc_detector", "sprite", "animation")]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_4qq8w")
+State_machine = NodePath("State_machine")
+npc_detector = NodePath("npc_detector")
+sprite = NodePath("sprite")
+animation = NodePath("AnimationTree")
+SPEED = 50.0
+SPEED_MOD = Array[float]([0.5, 0.7, 1.0, 1.5, 2.0])
+MIN_FALL_DAMAGE = 300.0
+max_rest_time = 10
+min_rest_time = 1
+max_chat_time = 2
+min_chat_time = 7
+
+[node name="npc_detector" type="Area2D" parent="." unique_id=300510183]
+collision_layer = 2
+collision_mask = 2
+
+[node name="area_collision" type="CollisionShape2D" parent="npc_detector" unique_id=1248892316]
+shape = SubResource("CircleShape2D_fy6sf")
+debug_color = Color(0.3181465, 0.6184952, 0.26891777, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1497500315]
+scale = Vector2(0.843085, 1.2424536)
+shape = SubResource("RectangleShape2D_fy6sf")
+
+[node name="R_wall_checker" type="RayCast2D" parent="." unique_id=370907112]
+target_position = Vector2(20, 0)
+collision_mask = 4
+
+[node name="L_wall_checker" type="RayCast2D" parent="." unique_id=1205879839]
+target_position = Vector2(-20, 0)
+collision_mask = 4
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=552215677]
+sprite_frames = SubResource("SpriteFrames_fy6sf")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=460167476]
+libraries/ = SubResource("AnimationLibrary_oxjek")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=391778294]
+tree_root = SubResource("AnimationNodeStateMachine_f48jo")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/chatting = false
+parameters/conditions/dead = false
+parameters/conditions/idle = false
+parameters/conditions/resting = false
+
+[node name="State_machine" parent="." unique_id=27953710 node_paths=PackedStringArray("current_state") instance=ExtResource("4_bgibx")]
+current_state = NodePath("Idle")
+
+[node name="Resting" parent="State_machine" unique_id=1482198425 node_paths=PackedStringArray("parent", "idle", "npc") instance=ExtResource("5_qqnsf")]
+parent = NodePath("..")
+idle = NodePath("../Idle")
+npc = NodePath("../..")
+
+[node name="Idle" parent="State_machine" unique_id=1830976867 node_paths=PackedStringArray("parent", "npc", "rest") instance=ExtResource("5_4asbw")]
+parent = NodePath("..")
+npc = NodePath("../..")
+rest = NodePath("../Resting")
+
+[node name="Danger" parent="State_machine" unique_id=293294459 instance=ExtResource("6_4asbw")]
+
+[node name="Label" type="Label" parent="." unique_id=554026032]
+offset_left = -19.0
+offset_top = -45.0
+offset_right = 21.0
+offset_bottom = -22.0
+text = "Anus"
+
+[node name="Label2" type="Label" parent="." unique_id=1852862587]
+visible = false
+offset_left = -9.0
+offset_top = -33.0
+offset_right = 10.0
+offset_bottom = -10.0
+text = "cu"
+
+[node name="Label3" type="Label" parent="." unique_id=135884014]
+visible = false
+offset_left = -24.0
+offset_top = -59.0
+offset_right = 27.0
+offset_bottom = -36.0
+text = "merda"
+
+[connection signal="start_chatting" from="." to="." method="_on_start_chatting"]

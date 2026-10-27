@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://d268w86ypeps1"]
+
+[ext_resource type="Texture2D" uid="uid://bgrggc4qx117j" path="res://assets/NPC #1.png" id="1_0q4fk"]
+[ext_resource type="Script" uid="uid://bii4eoslqlira" path="res://scripts/npc/bob.gd" id="1_4qq8w"]
+[ext_resource type="Texture2D" uid="uid://b3uvv3n7tvn3a" path="res://assets/death.png" id="2_rfq0m"]
+[ext_resource type="PackedScene" uid="uid://xiv61qf0y03t" path="res://node/controller/state_machine.tscn" id="4_bgibx"]
+[ext_resource type="PackedScene" uid="uid://28x320tv63h5" path="res://node/controller/States/idle.tscn" id="5_4asbw"]
+[ext_resource type="PackedScene" uid="uid://c63ve0nyq3spr" path="res://node/controller/States/resting.tscn" id="5_qqnsf"]
+[ext_resource type="PackedScene" uid="uid://cxyjngkbgds2e" path="res://node/controller/States/danger.tscn" id="6_4asbw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fy6sf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50e7e"]
+atlas = ExtResource("2_rfq0m")
+region = Rect2(0, 0, 18, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgibx"]
+atlas = ExtResource("1_0q4fk")
+region = Rect2(0, 0, 18, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fy6sf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50e7e")
+}],
+"loop": 1,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgibx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="bob" type="CharacterBody2D" unique_id=308532082 node_paths=PackedStringArray("State_machine")]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_4qq8w")
+State_machine = NodePath("State_machine")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1497500315]
+scale = Vector2(0.843085, 1.2424536)
+shape = SubResource("RectangleShape2D_fy6sf")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=552215677]
+sprite_frames = SubResource("SpriteFrames_fy6sf")
+autoplay = "default"
+
+[node name="State_machine" parent="." unique_id=27953710 node_paths=PackedStringArray("current_state") instance=ExtResource("4_bgibx")]
+current_state = NodePath("Idle")
+
+[node name="Resting" parent="State_machine" unique_id=1482198425 node_paths=PackedStringArray("parent", "idle") instance=ExtResource("5_qqnsf")]
+parent = NodePath("..")
+idle = NodePath("../Idle")
+
+[node name="Idle" parent="State_machine" unique_id=1830976867 node_paths=PackedStringArray("parent", "npc", "rest") instance=ExtResource("5_4asbw")]
+parent = NodePath("..")
+npc = NodePath("../..")
+rest = NodePath("../Resting")
+
+[node name="Danger" parent="State_machine" unique_id=293294459 instance=ExtResource("6_4asbw")]

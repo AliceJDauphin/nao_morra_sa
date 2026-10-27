@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://duvlc2w0kcpps"]
+
+[ext_resource type="Script" uid="uid://btxruwcx71xrh" path="res://scripts/controller/State/props/deactivated.gd" id="1_beb0o"]
+
+[node name="Deactivated" type="Node" unique_id=1458223445]
+script = ExtResource("1_beb0o")
+metadata/_custom_type_script = "uid://7n6o4atq4egq"

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://v8m5ncca3njc"]
+
+[ext_resource type="Script" uid="uid://bl0ihmoxc8jsf" path="res://scripts/controller/State/props/chasing.gd" id="1_krihd"]
+
+[node name="Chasing" type="Node" unique_id=416708306]
+script = ExtResource("1_krihd")
+metadata/_custom_type_script = "uid://7n6o4atq4egq"
